@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Marks Manager</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 style="text-align: center">Update Marks</h1>
+
+    <div class="form">
+        <form action="/update/{{score.id}}" method="POST">
+            <input class="inp" type="text" name="marks" id="marks" value="{{score.marks}}">
+            <input class = "btn" type="submit" value="Update">
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Marks Manager</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 style="text-align: center">Marks Manager</h1>
+    {% if scores|length < 1 %}
+    <h4 style="text-align: center">There are no marks to display. Enter a course & marks below!</h4>
+    {% else %}
+    <table>
+        <tr >
+            <th>Course</th>
+            <th>Marks</th>
+            <th>Added</th>
+            <th>Actions</th>
+        </tr>
+        {% for score in scores %}
+            <tr >
+                <td>{{ score.subject}}</td>
+                <td>{{ score.marks }}</td>
+                <td>{{ score.date_created.date() }}</td>
+                <td>
+                    <a href="/delete/{{score.id}}">Delete</a>
+                    <br>
+                    <a href="/update/{{score.id}}">Update</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    <div class="form">
+        <form action="/" method="POST">
+            <label style="display: block;color: black;"for="subject">Subject</label>
+            <input class="inp" type="text" name="subject" id="subject">
+            <label style="display: block;color: black;"for="marks">Marks</label>
+            <input class="inp" type="text" name="marks" id="marks">
+            <input class="btn" type="submit" value="Add Score">
+        </form>
+    </div>
+</div>
+{% endblock %}
